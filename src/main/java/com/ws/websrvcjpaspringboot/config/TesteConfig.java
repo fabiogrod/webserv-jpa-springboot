@@ -8,11 +8,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 import com.ws.websrvcjpaspringboot.entidades.Usuario;
-import com.ws.websrvcjpaspringboot.repositorios.RepositorioUsuario;
+import com.ws.websrvcjpaspringboot.repositorios.RptrUsuario;
 
 @Configuration @Profile("test") public class TesteConfig implements CommandLineRunner {
 
-	@Autowired private RepositorioUsuario repositorioUsuario;
+	@Autowired private RptrUsuario repositorioUsuario;
 
 	@Override public void run(String... args) throws Exception {
 		Usuario usr1 = new Usuario( null, "Jessica Serafina", "jessica@gmail.com", "999999999", "123456");
