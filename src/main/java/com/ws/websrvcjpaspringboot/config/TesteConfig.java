@@ -50,5 +50,14 @@ import com.ws.websrvcjpaspringboot.repositorios.RptrUsuario;
 		Produto prod5 = new Produto( null, "Rails para leigos", "Cras fringilla convallis sem vel faucibus.", 100.99, "");
 		
 		repositorioProduto.saveAll(Arrays.asList(prod1, prod2, prod3, prod4, prod5));
+		
+		prod1.getCategorias().add(cat2);
+		prod2.getCategorias().add(cat1);
+		prod2.getCategorias().add(cat3);
+		prod3.getCategorias().add(cat3);
+		prod4.getCategorias().add(cat3);
+		prod5.getCategorias().add(cat2);
+		
+		repositorioProduto.saveAll(Arrays.asList(prod1, prod2, prod3, prod4, prod5));
 	}
 }

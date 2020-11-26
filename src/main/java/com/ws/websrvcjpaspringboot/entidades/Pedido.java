@@ -27,7 +27,7 @@ import com.ws.websrvcjpaspringboot.entidades.enums.EstadoPedido;
 	
 	private Integer estadoPedido;
 	
-	@ManyToOne @JoinColumn(name = "idCliente") private Usuario cliente;
+	@ManyToOne @JoinColumn(name = "idcliente") private Usuario cliente;
 
 	public Pedido() {}
 	
