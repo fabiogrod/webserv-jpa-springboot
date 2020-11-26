@@ -1,11 +1,14 @@
 package com.ws.websrvcjpaspringboot.entidades;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity public class Usuario implements Serializable {
 
@@ -16,9 +19,10 @@ import javax.persistence.Id;
 	private String email;
 	private String fone;
 	private String senha;
+		
+	@OneToMany(mappedBy="cliente") private List<Pedido> pedidos = new ArrayList<>();
 
-	public Usuario() {
-	}
+	public Usuario() {}
 
 	public Usuario(Long id, String nome, String email, String fone, String senha) {
 		super();
@@ -67,6 +71,10 @@ import javax.persistence.Id;
 
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+	
+	public List<Pedido> getPedidos() {
+		return pedidos;
 	}
 
 	@Override public int hashCode() {
