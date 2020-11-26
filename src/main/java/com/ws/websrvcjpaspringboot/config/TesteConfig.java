@@ -10,10 +10,12 @@ import org.springframework.context.annotation.Profile;
 
 import com.ws.websrvcjpaspringboot.entidades.Categoria;
 import com.ws.websrvcjpaspringboot.entidades.Pedido;
+import com.ws.websrvcjpaspringboot.entidades.Produto;
 import com.ws.websrvcjpaspringboot.entidades.Usuario;
 import com.ws.websrvcjpaspringboot.entidades.enums.EstadoPedido;
 import com.ws.websrvcjpaspringboot.repositorios.RptrCategoria;
 import com.ws.websrvcjpaspringboot.repositorios.RptrPedido;
+import com.ws.websrvcjpaspringboot.repositorios.RptrProduto;
 import com.ws.websrvcjpaspringboot.repositorios.RptrUsuario;
 
 @Configuration @Profile("test") public class TesteConfig implements CommandLineRunner {
@@ -21,6 +23,7 @@ import com.ws.websrvcjpaspringboot.repositorios.RptrUsuario;
 	@Autowired private RptrUsuario repositorioUsuario;
 	@Autowired private RptrPedido repositorioPedido;
 	@Autowired private RptrCategoria repositorioCategoria;
+	@Autowired private RptrProduto repositorioProduto;
 
 	@Override public void run(String... args) throws Exception {
 		Usuario usr1 = new Usuario( null, "Jessica Serafina", "jessica@gmail.com", "999999999", "123456");
@@ -39,5 +42,13 @@ import com.ws.websrvcjpaspringboot.repositorios.RptrUsuario;
 		Categoria cat3 = new Categoria(null, "Computadores");
 		
 		repositorioCategoria.saveAll(Arrays.asList(cat1, cat2, cat3));
+		
+		Produto prod1 = new Produto( null, "O Senhor dos Anéis", "Lorem ipsum dolor sit amet, consectetur.", 90.5, "");
+		Produto prod2 = new Produto( null, "Smart TV", "Nulla eu imperdiet purus. Maecenas ante.", 2190.0, "");
+		Produto prod3 = new Produto( null, "Macook Pro", "Nam eleifend maximus tortor, at mollis.", 1250.0, "");
+		Produto prod4 = new Produto( null, "PC Gamer", "Donec aliquet odio ac rhoncus cursus.", 1200.0, "");
+		Produto prod5 = new Produto( null, "Rails para leigos", "Cras fringilla convallis sem vel faucibus.", 100.99, "");
+		
+		repositorioProduto.saveAll(Arrays.asList(prod1, prod2, prod3, prod4, prod5));
 	}
 }
