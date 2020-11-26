@@ -24,7 +24,7 @@ import javax.persistence.Table;
 	private String imgUrl;
 	
 	@ManyToMany
-	@JoinTable(name="produto_categoria", joinColumns= @JoinColumn (name = "produtoId" ), inverseJoinColumns = @JoinColumn(name="categoriaId"))
+	@JoinTable(name="produto_categorias", joinColumns= @JoinColumn (name = "produto_id" ), inverseJoinColumns = @JoinColumn(name="categoria_id"))
 	private Set<Categoria> categorias = new HashSet<>();
 	
 	public Produto () {}
