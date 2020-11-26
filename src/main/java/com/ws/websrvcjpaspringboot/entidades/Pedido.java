@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 // Se a classe tiver um nome de uma palavra reservada do MySQL ocorrerá um erro
 // sendo necessária a indicação pela anotação @Table(name="nome da tabela")
 
@@ -17,7 +19,9 @@ import javax.persistence.ManyToOne;
 	
 	private static final long serialVersionUID = 1L;
 	
-	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)private Long id;
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY) private Long id;	
+	
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern= "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone="GMT")
 	private Instant momento;
 	
 	@ManyToOne @JoinColumn(name = "idCliente") private Usuario cliente;
