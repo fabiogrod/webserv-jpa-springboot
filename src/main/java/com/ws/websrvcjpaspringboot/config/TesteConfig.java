@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Profile;
 
 import com.ws.websrvcjpaspringboot.entidades.Categoria;
 import com.ws.websrvcjpaspringboot.entidades.ItensPedido;
+import com.ws.websrvcjpaspringboot.entidades.Pagamento;
 import com.ws.websrvcjpaspringboot.entidades.Pedido;
 import com.ws.websrvcjpaspringboot.entidades.Produto;
 import com.ws.websrvcjpaspringboot.entidades.Usuario;
@@ -69,5 +70,11 @@ import com.ws.websrvcjpaspringboot.repositorios.RptrUsuario;
 		ItensPedido itensp4 = new ItensPedido(ped3, prod5, 2, prod5.getPreco());
 		
 		repositorioItensPedido.saveAll(Arrays.asList(itensp1, itensp2, itensp3, itensp4));
+		
+		Pagamento pag1 = new Pagamento(null, Instant.parse("2019-06-20T21:53:07Z"), ped1);
+		
+		ped1.setPagamento(pag1);
+		
+		repositorioPedido.save(ped1);
 	}
 }
