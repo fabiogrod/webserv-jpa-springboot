@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.ws.websrvcjpaspringboot.entidades.Usuario;
 import com.ws.websrvcjpaspringboot.repositorios.RptrUsuario;
+import com.ws.websrvcjpaspringboot.servicos.excecoes.ExcecaoRcrsNaoEncontrado;
 
 //@Component
 //@Repository 
@@ -23,7 +24,7 @@ import com.ws.websrvcjpaspringboot.repositorios.RptrUsuario;
 	
 	public Usuario pesquisarId(Long id) {
 		Optional <Usuario> optUsuario = rptrUsuario.findById(id);
-		return optUsuario.get();
+		return optUsuario.orElseThrow(() -> new ExcecaoRcrsNaoEncontrado(id));
 	}
 	
 	public Usuario inserir(Usuario usuario) {
