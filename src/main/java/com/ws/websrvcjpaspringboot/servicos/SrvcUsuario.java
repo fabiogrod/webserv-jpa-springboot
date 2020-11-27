@@ -4,12 +4,15 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 //import org.springframework.stereotype.Component;
 //import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import com.ws.websrvcjpaspringboot.entidades.Usuario;
 import com.ws.websrvcjpaspringboot.repositorios.RptrUsuario;
+import com.ws.websrvcjpaspringboot.servicos.excecoes.ExcecaoBD;
 import com.ws.websrvcjpaspringboot.servicos.excecoes.ExcecaoRcrsNaoEncontrado;
 
 //@Component
@@ -32,7 +35,18 @@ import com.ws.websrvcjpaspringboot.servicos.excecoes.ExcecaoRcrsNaoEncontrado;
 	}
 	
 	public void deletar(Long id) {
-		rptrUsuario.deleteById(id);
+		try {			
+			rptrUsuario.deleteById(id);
+		}
+		catch(EmptyResultDataAccessException e) {
+			throw new ExcecaoRcrsNaoEncontrado(id);
+		}
+		catch(DataIntegrityViolationException e) {
+			throw new ExcecaoBD(e.getMessage());
+		}		
+//		catch(RuntimeException e) {
+//			e.printStackTrace();
+//		}
 	}
 	
 	public Usuario atualizar(Long id, Usuario usuario) {
