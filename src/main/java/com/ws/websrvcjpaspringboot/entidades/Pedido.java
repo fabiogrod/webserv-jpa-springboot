@@ -2,6 +2,8 @@ package com.ws.websrvcjpaspringboot.entidades;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.ws.websrvcjpaspringboot.entidades.enums.EstadoPedido;
@@ -29,6 +32,8 @@ import com.ws.websrvcjpaspringboot.entidades.enums.EstadoPedido;
 	
 	@ManyToOne @JoinColumn(name = "idcliente") private Usuario cliente;
 
+	@OneToMany (mappedBy="id.pedido") private Set<ItensPedido> itens = new HashSet<>();
+	
 	public Pedido() {}
 	
 	public Pedido(Long id, Instant momento,EstadoPedido estadoPedido, Usuario cliente) {
@@ -72,6 +77,10 @@ import com.ws.websrvcjpaspringboot.entidades.enums.EstadoPedido;
 
 	public void setCliente(Usuario cliente) {
 		this.cliente = cliente;
+	}
+
+	public Set<ItensPedido> getItens() {
+		return itens;
 	}
 
 	@Override

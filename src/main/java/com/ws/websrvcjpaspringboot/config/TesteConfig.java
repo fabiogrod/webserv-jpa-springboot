@@ -9,11 +9,13 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 import com.ws.websrvcjpaspringboot.entidades.Categoria;
+import com.ws.websrvcjpaspringboot.entidades.ItensPedido;
 import com.ws.websrvcjpaspringboot.entidades.Pedido;
 import com.ws.websrvcjpaspringboot.entidades.Produto;
 import com.ws.websrvcjpaspringboot.entidades.Usuario;
 import com.ws.websrvcjpaspringboot.entidades.enums.EstadoPedido;
 import com.ws.websrvcjpaspringboot.repositorios.RptrCategoria;
+import com.ws.websrvcjpaspringboot.repositorios.RptrItensPedido;
 import com.ws.websrvcjpaspringboot.repositorios.RptrPedido;
 import com.ws.websrvcjpaspringboot.repositorios.RptrProduto;
 import com.ws.websrvcjpaspringboot.repositorios.RptrUsuario;
@@ -24,6 +26,7 @@ import com.ws.websrvcjpaspringboot.repositorios.RptrUsuario;
 	@Autowired private RptrPedido repositorioPedido;
 	@Autowired private RptrCategoria repositorioCategoria;
 	@Autowired private RptrProduto repositorioProduto;
+	@Autowired private RptrItensPedido repositorioItensPedido;
 
 	@Override public void run(String... args) throws Exception {
 		Usuario usr1 = new Usuario( null, "Jessica Serafina", "jessica@gmail.com", "999999999", "123456");
@@ -59,5 +62,12 @@ import com.ws.websrvcjpaspringboot.repositorios.RptrUsuario;
 		prod5.getCategorias().add(cat2);
 		
 		repositorioProduto.saveAll(Arrays.asList(prod1, prod2, prod3, prod4, prod5));
+		
+		ItensPedido itensp1 = new ItensPedido(ped1, prod1, 2, prod1.getPreco());
+		ItensPedido itensp2 = new ItensPedido(ped1, prod3, 1, prod4.getPreco());
+		ItensPedido itensp3 = new ItensPedido(ped2, prod3, 2, prod1.getPreco());
+		ItensPedido itensp4 = new ItensPedido(ped3, prod5, 2, prod5.getPreco());
+		
+		repositorioItensPedido.saveAll(Arrays.asList(itensp1, itensp2, itensp3, itensp4));
 	}
 }
