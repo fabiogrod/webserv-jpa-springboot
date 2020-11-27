@@ -65,8 +65,8 @@ import com.ws.websrvcjpaspringboot.repositorios.RptrUsuario;
 		repositorioProduto.saveAll(Arrays.asList(prod1, prod2, prod3, prod4, prod5));
 		
 		ItensPedido itensp1 = new ItensPedido(ped1, prod1, 2, prod1.getPreco());
-		ItensPedido itensp2 = new ItensPedido(ped1, prod3, 1, prod4.getPreco());
-		ItensPedido itensp3 = new ItensPedido(ped2, prod3, 2, prod1.getPreco());
+		ItensPedido itensp2 = new ItensPedido(ped1, prod3, 1, prod3.getPreco());
+		ItensPedido itensp3 = new ItensPedido(ped2, prod3, 2, prod3.getPreco());
 		ItensPedido itensp4 = new ItensPedido(ped3, prod5, 2, prod5.getPreco());
 		
 		repositorioItensPedido.saveAll(Arrays.asList(itensp1, itensp2, itensp3, itensp4));

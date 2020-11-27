@@ -11,6 +11,8 @@ import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity @Table(name="pagamento") public class Pagamento implements Serializable {
 	
@@ -19,7 +21,7 @@ import javax.persistence.Table;
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)  private Long id;
 	private Instant momento;
 	
-	@OneToOne @MapsId private Pedido pedido;
+	@JsonIgnore @OneToOne @MapsId private Pedido pedido;
 	
 	public Pagamento () {}
 

@@ -94,6 +94,15 @@ import com.ws.websrvcjpaspringboot.entidades.enums.EstadoPedido;
 	public void setPagamento(Pagamento pagamento) {
 		this.pagamento = pagamento;
 	}
+	
+	public Double getTotal() {
+		double total = 0;
+		
+		for (ItensPedido ip : itens) {
+			total += ip.getSubTotal();
+		}
+		return total;
+	}
 
 	@Override
 	public int hashCode() {
