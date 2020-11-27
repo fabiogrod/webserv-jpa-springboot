@@ -3,6 +3,8 @@ package com.ws.websrvcjpaspringboot.servicos;
 import java.util.List;
 import java.util.Optional;
 
+import javax.persistence.EntityNotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -43,16 +45,18 @@ import com.ws.websrvcjpaspringboot.servicos.excecoes.ExcecaoRcrsNaoEncontrado;
 		}
 		catch(DataIntegrityViolationException e) {
 			throw new ExcecaoBD(e.getMessage());
-		}		
-//		catch(RuntimeException e) {
-//			e.printStackTrace();
-//		}
+		}
 	}
 	
 	public Usuario atualizar(Long id, Usuario usuario) {
-		Usuario entidade = rptrUsuario.getOne(id);
-		atualizarDados(entidade, usuario);
-		return rptrUsuario.save(entidade);
+		try {
+			Usuario entidade = rptrUsuario.getOne(id);
+			atualizarDados(entidade, usuario);
+			return rptrUsuario.save(entidade);
+		}
+		catch(EntityNotFoundException e) {			
+			throw new ExcecaoRcrsNaoEncontrado(id);
+		}
 	}
 
 	private void atualizarDados(Usuario entidade, Usuario usuario) {		
