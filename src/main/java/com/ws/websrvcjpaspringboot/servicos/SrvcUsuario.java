@@ -33,4 +33,16 @@ import com.ws.websrvcjpaspringboot.repositorios.RptrUsuario;
 	public void deletar(Long id) {
 		rptrUsuario.deleteById(id);
 	}
+	
+	public Usuario atualizar(Long id, Usuario usuario) {
+		Usuario entidade = rptrUsuario.getOne(id);
+		atualizarDados(entidade, usuario);
+		return rptrUsuario.save(entidade);
+	}
+
+	private void atualizarDados(Usuario entidade, Usuario usuario) {		
+		entidade.setNome(usuario.getNome());
+		entidade.setEmail(usuario.getEmail());
+		entidade.setFone(usuario.getFone());
+	}
 }
