@@ -29,4 +29,8 @@ import com.ws.websrvcjpaspringboot.repositorios.RptrUsuario;
 	public Usuario inserir(Usuario usuario) {
 		return rptrUsuario.save(usuario);
 	}
+	
+	public void deletar(Long id) {
+		rptrUsuario.deleteById(id);
+	}
 }
