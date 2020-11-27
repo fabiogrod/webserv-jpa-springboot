@@ -25,4 +25,8 @@ import com.ws.websrvcjpaspringboot.repositorios.RptrUsuario;
 		Optional <Usuario> optUsuario = rptrUsuario.findById(id);
 		return optUsuario.get();
 	}
+	
+	public Usuario inserir(Usuario usuario) {
+		return rptrUsuario.save(usuario);
+	}
 }
